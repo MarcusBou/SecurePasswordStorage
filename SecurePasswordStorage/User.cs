@@ -10,17 +10,17 @@ namespace SecurePasswordStorage
     {
         private string username;
         private string password;
-        private string salt;
+        private byte[] salt;
         private bool locked;
         private int attempts;
 
         public string Username { get { return username; } } 
         public string Password { get { return password; } set { password = value; } }
-        public string Salt { get { return salt; } set { salt = value; } }
+        public byte[] Salt { get { return salt; } set { salt = value; } }
         public bool Locked { get { return locked; } set { locked = value; } }
         public int Attempts { get { return attempts; } set { attempts = value; } }
 
-        public User(string username, string password, string salt)
+        public User(string username, string password, byte[] salt)
         {
             this.username = username;
             this.password = password;

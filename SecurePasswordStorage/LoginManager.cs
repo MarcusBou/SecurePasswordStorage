@@ -31,7 +31,8 @@ namespace SecurePasswordStorage
             {
                 if (existinguser.Locked == false && existinguser.Attempts > 0)
                 {
-                    string hashedPass = Convert.ToBase64String(hash.HashPassword(Encoding.UTF8.GetBytes(password), Encoding.UTF8.GetBytes(existinguser.Salt), 1000));
+                    string hashedPass = Convert.ToBase64String(hash.HashPassword(Encoding.UTF8.GetBytes(password), existinguser.Salt, 1000));
+                    string hashedPass1 = Convert.ToBase64String(hash.HashPassword(Encoding.UTF8.GetBytes(password), existinguser.Salt, 1000));
                     if (existinguser.Password == hashedPass)
                     {
                         return $"Logged in Succesfull as {existinguser.Username}";
@@ -50,6 +51,7 @@ namespace SecurePasswordStorage
                         {
                             Console.WriteLine(existinguser.Password);
                             Console.WriteLine(hashedPass);
+                            Console.WriteLine(hashedPass1);
                             existinguser.Attempts--;
                             return $"Wrong Password, you have {existinguser.Attempts} attempts left";
                         }
